@@ -2,9 +2,11 @@ package auryadov.springframework.springpetclinic.services.map;
 
 import auryadov.springframework.springpetclinic.model.Visit;
 import auryadov.springframework.springpetclinic.services.VisitService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class VisitServiceMap extends AbstractMapService<Visit, Long> implements VisitService {
     @Override
     public Set<Visit> findAll() {
@@ -23,12 +25,13 @@ public class VisitServiceMap extends AbstractMapService<Visit, Long> implements 
 
     @Override
     public Visit save(Visit object) {
-        if (object.getPet() == null
-                || object.getPet().getOwner() == null
-                || object.getPet().getId() == null
-        || object.getPet().getOwner().getId() == null) {
-            throw new RuntimeException("Invalid visit");
-        }
+
+//        if (object.getPet() == null
+//                || object.getPet().getOwner() == null
+//                || object.getPet().getId() == null
+//        || object.getPet().getOwner().getId() == null) {
+//            throw new RuntimeException("Invalid visit");
+//        }
         return super.save(object);
     }
 

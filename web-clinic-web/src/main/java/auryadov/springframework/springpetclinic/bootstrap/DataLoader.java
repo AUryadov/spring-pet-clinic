@@ -1,10 +1,7 @@
 package auryadov.springframework.springpetclinic.bootstrap;
 
 import auryadov.springframework.springpetclinic.model.*;
-import auryadov.springframework.springpetclinic.services.OwnerService;
-import auryadov.springframework.springpetclinic.services.PetTypeService;
-import auryadov.springframework.springpetclinic.services.SpecialityService;
-import auryadov.springframework.springpetclinic.services.VetService;
+import auryadov.springframework.springpetclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -17,16 +14,22 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialityService specialityService;
+    private final VisitService visitService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialityService specialityService) {
+    public DataLoader(OwnerService ownerService,
+                      VetService vetService,
+                      PetTypeService petTypeService,
+                      SpecialityService specialityService,
+                      VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialityService = specialityService;
+        this.visitService = visitService;
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
 
         int count = petTypeService.findAll().size();
 
@@ -85,6 +88,13 @@ public class DataLoader implements CommandLineRunner {
         owner2.getPets().add(timaCat);
 
         ownerService.save(owner2);
+
+        Visit catVisit = new Visit();
+        catVisit.setPet(timaCat);
+        catVisit.setDate(LocalDate.now());
+        catVisit.setDescription("Sneezy Kitty");
+
+        visitService.save(catVisit);
 
         System.out.println("Loaded Owners...");
 
