@@ -36,8 +36,6 @@
         </dependency>
     </dependencies>
     <properties>
-        <maven.compiler.source>13</maven.compiler.source>
-        <maven.compiler.target>13</maven.compiler.target>
         <spring-boot.repackage.skip>true</spring-boot.repackage.skip>
     </properties>
     <build>
