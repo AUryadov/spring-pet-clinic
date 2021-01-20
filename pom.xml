@@ -18,10 +18,6 @@
     <name>spring-pet-clinic</name>
     <description>Spring Boot Pet Clinic</description>
 
-    <properties>
-        <java.version>13</java.version>
-    </properties>
-
     <build>
         <plugins>
             <plugin>
